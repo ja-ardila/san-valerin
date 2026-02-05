@@ -17,13 +17,19 @@ const copyBtn = $("#copyBtn");
 const restartBtn = $("#restartBtn");
 
 const confettiCanvas = $("#confetti");
+confettiCanvas.style.pointerEvents = "none";
 const ctx = confettiCanvas.getContext("2d");
 
 // Personaliza desde la URL (opcional)
 // Ej: .../index.html?para=Valen&de=Juan
 const qs = new URLSearchParams(location.search);
-const para = (qs.get("para") || "").trim(); // nombre de ella (opcional)
-const de = (qs.get("de") || "").trim();     // tu nombre (opcional)
+const para = (qs.get("para") || "Valerin").trim(); // nombre de ella (opcional)
+const de = (qs.get("de") || "Juan Andrés").trim();     // tu nombre (opcional)
+
+const reset = (qs.get("reset") || "").trim(); // si es "1", reinicia el estado
+if (reset === "1") {
+  localStorage.removeItem("sv_accepted");
+}
 
 signatureEl.textContent = de ? `Hecho con amor por ${de} ✨` : "Hecho con amor ✨";
 
@@ -84,16 +90,6 @@ const scenes = [
   },
 ];
 
-// Estado
-let step = 0;
-
-// Si ya aceptó antes, mostrar éxito al abrir el link (para presumir)
-if (localStorage.getItem("sv_accepted") === "true") {
-  showSuccess();
-} else {
-  render();
-}
-
 yesBtn.addEventListener("click", () => {
   localStorage.setItem("sv_accepted", "true");
   showSuccess();
@@ -125,6 +121,17 @@ restartBtn.addEventListener("click", () => {
   stopConfetti();
   render();
 });
+// Estado
+let step = 0;
+
+// Si ya aceptó antes, mostrar éxito al abrir el link (para presumir)
+// Tip para pruebas: agrega ?reset=1 al link para reiniciar el estado.
+if (localStorage.getItem("sv_accepted") === "true") {
+  showSuccess();
+} else {
+  render();
+}
+
 
 function render(){
   const s = scenes[step];
