@@ -47,21 +47,21 @@ const Mascots = {
 const scenes = [
   {
     title: (para ? `${para}, ¿quieres ser mi San Valentín?` : "¿Quieres ser mi San Valentín?"),
-    subtitle: "Prometo postres, risas y abrazos infinitos.",
+    subtitle: "Prometo postres, risas y muchos besitos.",
     noLabel: "No",
     hint: "Tip: cada “No” hace al “Sí” más valiente.",
     mascot: "happy",
   },
   {
     title: "Ejem... ¿segurísima?",
-    subtitle: "Lo pregunto porque me gustas MUCHO (nivel: infinito).",
+    subtitle: "Lo pregunto porque me gustas MUCHO.",
     noLabel: "No 🙈",
     hint: "Ok, ok… entendí. Pero mira el botón rosado 😌",
     mascot: "puppy",
   },
   {
     title: "Piénsalo otra vez, porfa",
-    subtitle: "Traje mi argumento más fuerte: carita tierna certificada.",
+    subtitle: "Traje mi argumento más fuerte: novio oficial certificado.",
     noLabel: "Nope",
     hint: "Cada click al No sube el poder del Sí 💗",
     mascot: "shocked",
