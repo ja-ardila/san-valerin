@@ -91,13 +91,30 @@ const scenes = [
 ];
 
 yesBtn.addEventListener("click", () => {
-  localStorage.setItem("sv_accepted", "true");
+  const remember = (qs.get("remember") || "").trim();
+  if (remember === "1") {
+    try { localStorage.setItem("sv_accepted", "true"); } catch {}
+  }
   showSuccess();
 });
 
 noBtn.addEventListener("click", () => {
   if (step < scenes.length - 1) step++;
+  const remember = (qs.get("remember") || "").trim();
+if (remember === "1") {
+  try {
+    if (localStorage.getItem("sv_accepted") === "true") {
+      showSuccess();
+    } else {
+      render();
+    }
+  } catch {
+    render();
+  }
+} else {
+  // por defecto, no recuerda el estado
   render();
+}
   // micro vibración en móviles (si está disponible)
   try { if (navigator.vibrate) navigator.vibrate(18); } catch {}
 });
@@ -115,24 +132,46 @@ copyBtn.addEventListener("click", async () => {
 });
 
 restartBtn.addEventListener("click", () => {
-  localStorage.removeItem("sv_accepted");
+  try { localStorage.removeItem("sv_accepted"); } catch {}
   success.hidden = true;
   step = 0;
   stopConfetti();
+  const remember = (qs.get("remember") || "").trim();
+if (remember === "1") {
+  try {
+    if (localStorage.getItem("sv_accepted") === "true") {
+      showSuccess();
+    } else {
+      render();
+    }
+  } catch {
+    render();
+  }
+} else {
+  // por defecto, no recuerda el estado
   render();
+}
 });
 // Estado
 let step = 0;
 
-// Si ya aceptó antes, mostrar éxito al abrir el link (para presumir)
-// Tip para pruebas: agrega ?reset=1 al link para reiniciar el estado.
-if (localStorage.getItem("sv_accepted") === "true") {
-  showSuccess();
+// Inicio: por defecto SIEMPRE arranca desde cero (sin saltarse el juego).
+// Si quieres que “recuerde” el sí al volver a abrir, agrega ?remember=1
+const remember = (qs.get("remember") || "").trim();
+if (remember === "1") {
+  try {
+    if (localStorage.getItem("sv_accepted") === "true") {
+      showSuccess();
+    } else {
+      render();
+    }
+  } catch {
+    render();
+  }
 } else {
+  // por defecto, no recuerda el estado
   render();
 }
-
-
 function render(){
   const s = scenes[step];
 

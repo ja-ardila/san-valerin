@@ -232,3 +232,9 @@ body{
   .media{ height: 200px; }
   .btn{ padding: 11px 16px; }
 }
+
+
+/* hidden debe ocultar el modal aunque exista .success {display:grid} */
+.success[hidden]{
+  display: none !important;
+}
