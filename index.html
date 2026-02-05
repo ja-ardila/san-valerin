@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff4d87" />
+  <title>San Valentín 💖</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="wrap" role="main">
+    <div class="bg-hearts" aria-hidden="true"></div>
+
+    <section class="card" aria-live="polite">
+      <header class="media">
+        <div id="mascot" class="mascot" aria-hidden="true"></div>
+      </header>
+
+      <h1 id="title" class="title">¿Quieres ser mi San Valentín?</h1>
+      <p id="subtitle" class="subtitle">Prometo postres, risas y abrazos infinitos.</p>
+
+      <div class="buttons">
+        <button id="yesBtn" class="btn btn-yes" type="button">
+          <span class="btn-label">Sí</span>
+          <span class="btn-emoji" aria-hidden="true">💗</span>
+        </button>
+
+        <button id="noBtn" class="btn btn-no" type="button">No</button>
+      </div>
+
+      <p id="hint" class="hint">Tip: cada “No” hace al “Sí” más valiente.</p>
+      <footer class="footer">
+        <span id="signature" class="signature">Hecho con amor ✨</span>
+      </footer>
+    </section>
+
+    <section id="success" class="success" hidden>
+      <div class="success-card" role="dialog" aria-modal="true" aria-label="Confirmación">
+        <div class="success-emoji" aria-hidden="true">🎉💘</div>
+        <h2 class="success-title" id="successTitle">¡SABÍA QUE DIRÍAS QUE SÍ!</h2>
+        <p class="success-text" id="successText">
+          Ahora envíame un mensajito: <strong>“Listo, somos San Valentín 💖”</strong>
+        </p>
+        <div class="success-actions">
+          <button id="copyBtn" class="btn btn-yes" type="button">Copiar mensajito</button>
+          <button id="restartBtn" class="btn btn-no" type="button">Reiniciar</button>
+        </div>
+        <p class="success-small">Si abres este link otra vez, se queda en “sí” (para presumir).</p>
+      </div>
+      <canvas id="confetti" class="confetti" aria-hidden="true"></canvas>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
